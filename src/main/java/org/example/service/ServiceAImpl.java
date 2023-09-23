@@ -1,6 +1,12 @@
-package org.example.diContainer;
+package org.example.service;
 
-public class ServiceAImpl implements ServiceA{
+import org.example.framework.annotations.Autowired;
+import org.example.framework.annotations.Component;
+
+
+@Component
+public class ServiceAImpl implements ServiceA {
+    @Autowired
     private ServiceB serviceB;
 
     @Override

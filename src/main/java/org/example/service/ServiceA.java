@@ -1,4 +1,4 @@
-package org.example.diContainer;
+package org.example.service;
 
 public interface ServiceA {
     public String jobA();

@@ -1,4 +1,6 @@
-package org.example.diContainer;
+package org.example.service;
+
+import org.example.service.ServiceA;
 
 public interface ServiceB {
     public String jobB();
