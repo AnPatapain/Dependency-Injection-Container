@@ -12,14 +12,14 @@ import java.util.Set;
 
 public class DIContainer {
     private Set<Object> beanSet = new HashSet<>();
-    public static DIContainer createAppContext(String packageName) throws InvocationTargetException, NoSuchMethodException,
-                                                                   InstantiationException, IllegalAccessException {
+
+    public static DIContainer createAppContext(String packageName) throws Exception {
         Reflections reflections = new Reflections(packageName);
         Set<Class<?>> classes = reflections.getTypesAnnotatedWith(Component.class);
         return new DIContainer(classes);
     }
-    public DIContainer(Set<Class<?>> classSet) throws NoSuchMethodException, InvocationTargetException,
-                                                      InstantiationException, IllegalAccessException {
+
+    public DIContainer(Set<Class<?>> classSet) throws Exception {
         // Create bean and add into beanSet for each class in classSet
         for(Class<?> classBean : classSet) {
             Constructor constructor = classBean.getConstructor();
@@ -39,16 +39,11 @@ public class DIContainer {
         }
 
     }
+
     public <T> T getBean(Class<T> tClass) {
         for(Object bean : this.beanSet) {
             if(tClass.isInstance(bean)) return (T)bean;
         }
         return null;
-    }
-
-    public void displayAllBeans() {
-        for(Object bean : this.beanSet) {
-            System.out.println(bean.getClass().getName());
-        }
     }
 }
